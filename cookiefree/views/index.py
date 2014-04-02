@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import render_template, redirect, abort
+from flask import render_template, redirect
 from baseframe.views import gen_assets_url
 from coaster.views import requestargs
 from coaster.assets import AssetNotFound
@@ -17,7 +17,7 @@ def index():
 def linkasset(asset):
     try:
         response = redirect(gen_assets_url(asset))
-    except AssetNotFound:
-        abort(404)
+    except AssetNotFound as e:
+        return "404 Not found: %s" % unicode(e), 404
     response.headers['Cache-Control'] = 'public, max-age=600'
     return response
