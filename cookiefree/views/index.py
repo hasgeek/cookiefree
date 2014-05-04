@@ -21,3 +21,9 @@ def linkasset(asset):
         return "404 Not found: %s" % unicode(e), 404
     response.headers['Cache-Control'] = 'public, max-age=600'
     return response
+
+
+@app.after_request
+def allow_cross_origin(response):
+    response.headers.setdefault('Access-Control-Allow-Origin', '*')
+    return response
