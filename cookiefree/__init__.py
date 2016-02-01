@@ -16,7 +16,7 @@ app = Flask(__name__, instance_relative_config=True)
 
 # Second, import the models and views
 
-from . import views
+from . import views  # NOQA
 
 # Third, setup baseframe and assets
 

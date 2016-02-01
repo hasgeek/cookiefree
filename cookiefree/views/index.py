@@ -13,10 +13,11 @@ def index():
 
 
 @app.route('/asset')
-@requestargs('asset[]')
-def linkasset(asset):
+@requestargs('asset[]', 'a[]')
+def linkasset(asset=[], a=[]):
+    assets = asset + a  # `asset` and `a` are both lists; merge them
     try:
-        response = redirect(gen_assets_url(asset))
+        response = redirect(gen_assets_url(assets))
     except AssetNotFound as e:
         return "404 Not found: %s" % unicode(e), 404
     response.headers['Cache-Control'] = 'public, max-age=600'
@@ -25,5 +26,7 @@ def linkasset(asset):
 
 @app.after_request
 def allow_cross_origin(response):
+    # In production, assets are directly served by Nginx or Apache,
+    # so make sure the same header is set in the web server's config
     response.headers.setdefault('Access-Control-Allow-Origin', '*')
     return response
