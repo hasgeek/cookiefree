@@ -23,8 +23,6 @@ from . import views  # NOQA
 assets['cookiefree.js'][version] = 'js/app.js'
 assets['cookiefree.css'][version] = 'css/app.css'
 
-
 # Configure the app
-def init_for(env):
-    coaster.app.init_app(app, env)
-    baseframe.init_app(app, requires=['baseframe-bs3', 'cookiefree'])
+coaster.app.init_app(app)
+baseframe.init_app(app, requires=['baseframe-bs3', 'cookiefree'])
