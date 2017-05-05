@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+#: Debug mode (only to be used in development.py, never in settings.py)
+DEBUG = True
+#: Always set this to false or cookiefree will break (Flask's default is True)
+DEBUG_TB_ENABLED = False
 #: Site title
 SITE_TITLE = 'HasGeek App'
 #: Site id (for network bar)
