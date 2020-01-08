@@ -19,7 +19,7 @@ def linkasset(asset=[], a=[]):
     try:
         response = redirect(gen_assets_url(assets))
     except AssetNotFound as e:
-        return "404 Not found: %s" % unicode(e), 404
+        return "404 Not found: %s" % str(e), 404
     response.headers['Cache-Control'] = 'public, max-age=600'
     return response
 
